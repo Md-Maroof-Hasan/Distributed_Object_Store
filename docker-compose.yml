@@ -1,0 +1,72 @@
+services:
+  controller:
+    build:
+      context: .
+      dockerfile: controller/Dockerfile
+    container_name: mini-cloud-controller
+    ports:
+      - "127.0.0.1:5000:5000"
+    environment:
+      DB_PATH: /data/controller.sqlite3
+      PYTHONUNBUFFERED: "1"
+      HEARTBEAT_TIMEOUT: "8"
+      RECONCILE_INTERVAL: "4"
+    volumes:
+      - controller-data:/data
+    restart: unless-stopped
+
+  worker1: &worker
+    build:
+      context: .
+      dockerfile: worker/Dockerfile
+    container_name: mini-cloud-worker1
+    environment:
+      WORKER_ID: worker1
+      CONTROLLER_URL: http://controller:5000
+      STORAGE_DIR: /data/chunks
+      PYTHONUNBUFFERED: "1"
+    volumes:
+      - worker1-data:/data
+    depends_on:
+      - controller
+    restart: unless-stopped
+
+  worker2:
+    <<: *worker
+    container_name: mini-cloud-worker2
+    environment:
+      WORKER_ID: worker2
+      CONTROLLER_URL: http://controller:5000
+      STORAGE_DIR: /data/chunks
+      PYTHONUNBUFFERED: "1"
+    volumes:
+      - worker2-data:/data
+
+  worker3:
+    <<: *worker
+    container_name: mini-cloud-worker3
+    environment:
+      WORKER_ID: worker3
+      CONTROLLER_URL: http://controller:5000
+      STORAGE_DIR: /data/chunks
+      PYTHONUNBUFFERED: "1"
+    volumes:
+      - worker3-data:/data
+
+  worker4:
+    <<: *worker
+    container_name: mini-cloud-worker4
+    environment:
+      WORKER_ID: worker4
+      CONTROLLER_URL: http://controller:5000
+      STORAGE_DIR: /data/chunks
+      PYTHONUNBUFFERED: "1"
+    volumes:
+      - worker4-data:/data
+
+volumes:
+  controller-data:
+  worker1-data:
+  worker2-data:
+  worker3-data:
+  worker4-data:
