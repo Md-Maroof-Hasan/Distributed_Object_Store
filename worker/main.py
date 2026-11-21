@@ -12,7 +12,7 @@ from werkzeug.exceptions import HTTPException
 from common.config import CHUNK_SIZE, HEARTBEAT_INTERVAL, REQUEST_TIMEOUT
 from worker.storage import ChunkStore
 
-
+# Chunks
 def create_app(store=None, worker_id=None):
     app = Flask(__name__)
     node_id = worker_id or os.getenv("WORKER_ID", "worker1")
