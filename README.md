@@ -261,3 +261,22 @@ docker compose up -d        # Recreates containers and reuses persisted data
 # WARNING: erase all objects and data only if you intentionally want a reset:
 docker compose down -v
 ```
+
+## Team Responsibilities
+
+### Md Maroof Hasan Khan
+- Controller REST API management
+- SQLite metadata management
+- Object upload and download workflows
+- API and project documentation
+
+### Swarnendu Sekhar Das
+- Worker chunk storage
+- Worker registration and heartbeats
+- Replication and fault recovery
+- Reliability testing
+
+### Shared Components
+- Docker Compose integration
+- System testing and validation
+- Final project demonstration
