@@ -1,4 +1,5 @@
 """Distributed object-store coordinator, independent of the Flask API layer."""
+#A stored chunk counts as healthy only when its size and checksum match the controller metadata.
 from __future__ import annotations
 
 import hashlib
