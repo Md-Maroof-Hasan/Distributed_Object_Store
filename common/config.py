@@ -1,4 +1,6 @@
 """Shared constants and environment configuration."""
+# controller uses CHUNK_SIZE to divide uploaded objects
+
 import os
 
 CHUNK_SIZE = 1024 * 1024  # Exactly 1 MiB (1,048,576 bytes)
