@@ -11,7 +11,7 @@ from common.config import CHUNK_SIZE
 
 CHUNK_ID_RE = re.compile(r"^[0-9a-f]{32}$")
 
-
+"""Validate and persist"""
 class ChunkStore:
     def __init__(self, path: str):
         self.root = Path(path)
